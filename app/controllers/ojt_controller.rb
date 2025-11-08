@@ -20,15 +20,15 @@ class OjtController < ApplicationController
   end
 
   # POST /ojt/sync_current_month
-def sync_current_month
-  @user = current_user
-  month = Date.current.beginning_of_month
-  range = month..month.end_of_month
+  def sync_current_month
+    @user = current_user
+    month = Date.current.beginning_of_month
+    range = month..month.end_of_month
 
-  log = @user.uaojt_sync_logs.build(
-    month: month,
-    ran_at: Time.current
-  )
+    log = @user.uaojt_sync_logs.build(
+      month: month,
+      ran_at: Time.current
+    )
 
   begin
     raise "OJT integration is not enabled for this user." unless @user.uaojt_enabled?
