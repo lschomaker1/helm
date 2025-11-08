@@ -5,6 +5,7 @@ class WorkOrder < ApplicationRecord
   belongs_to :created_by,  class_name: "User", optional: true
   belongs_to :quote,       optional: true
 
+  has_many :purchase_orders, dependent: :nullify
   has_many :time_entries, dependent: :destroy
   has_many :work_order_calls, dependent: :destroy
   has_many :assigned_technicians, through: :work_order_calls, source: :technician

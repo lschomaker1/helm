@@ -1,0 +1,18 @@
+<h1>Tech Reference</h1>
+
+<%= form_with url: tech_reference_path, method: :get, local: true do |f| %>
+  <div class="field">
+    <%= f.label :q, "Search technicians, managers, dispatchers" %>
+    <%= f.search_field :q, value: @query, placeholder: "Name, email, phone" %>
+  </div>
+  <%= f.submit "Filter", class: "btn btn-primary" %>
+</%= form_with %>
+
+<h2>Technicians</h2>
+<%= render partial: "person_list", locals: { people: @technicians } %>
+
+<h2>Managers</h2>
+<%= render partial: "person_list", locals: { people: @managers } %>
+
+<h2>Dispatchers</h2>
+<%= render partial: "person_list", locals: { people: @dispatchers } %>

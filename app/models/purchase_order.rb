@@ -1,11 +1,18 @@
-# app/models/purchase_order.rb
 class PurchaseOrder < ApplicationRecord
-  belongs_to :work_order, optional: true
-  belongs_to :division
+  belongs_to :work_order
   belongs_to :created_by, class_name: "User"
 
-  STATUSES = %w[draft submitted approved ordered received].freeze
+  before_validation :assign_numbers, on: :create
 
-  validates :number, presence: true
-  validates :status, inclusion: { in: STATUSES }
+  validates :number, presence: true, uniqueness: true
+  validates :sequence_number, presence: true, uniqueness: true
+
+  private
+
+  def assign_numbers
+    return if sequence_number.present? && number.present?
+
+    self.sequence_number ||= (PurchaseOrder.maximum(:sequence_number) || 0) + 1
+    self.number ||= format("FRE214%06d", sequence_number)
+  end
 end

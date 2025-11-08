@@ -1,2 +1,22 @@
-<h1>New Purchase Order</h1>
-<%= render "form", purchase_order: @purchase_order %>
+<h1>New Purchase Order for WO #<%= @work_order.id %></h1>
+
+<%= form_with model: [@work_order, @purchase_order] do |f| %>
+  <div class="field">
+    <%= f.label :vendor_name %>
+    <%= f.text_field :vendor_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total_amount %>
+    <%= f.number_field :total_amount, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Purchase Order", class: "btn btn-primary" %>
+  </div>
+<% end %>

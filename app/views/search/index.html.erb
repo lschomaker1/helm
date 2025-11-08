@@ -1,0 +1,64 @@
+<h1>Search</h1>
+
+<%= form_with url: search_path, method: :get, local: true do |f| %>
+  <div class="field">
+    <%= f.label :q, "Search term" %>
+    <%= f.search_field :q, value: @query, placeholder: "Email, contact name, phone, address, PO #, etc." %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sort, "Sort customers by" %>
+    <%= f.select :sort,
+                 [["Most recent calls", "recent_calls"],
+                  ["Most calls", "most_calls"],
+                  ["Name (A–Z)", "name"]],
+                 selected: @sort %>
+  </div>
+
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
+
+<% if @query.present? %>
+  <h2>Customers</h2>
+  <% @customers.each do |customer| %>
+    <div class="card" style="margin-bottom: 1rem; padding: 1rem;">
+      <h3><%= customer.name %></h3>
+      <p>
+        <strong>Contact:</strong> <%= customer.contact_name %><br>
+        <strong>Email:</strong> <%= customer.email %><br>
+        <strong>Phone:</strong> <%= customer.phone %><br>
+        <strong>Address:</strong> <%= customer.address %>
+      </p>
+
+      <h4>Work Orders</h4>
+      <ul>
+        <% customer.work_orders.order(created_at: :desc).each do |wo| %>
+          <li>
+            <%= link_to "WO ##{wo.id}", work_order_path(wo) %>
+            – <%= l wo.created_at, format: :short %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>Work Orders</h2>
+  <ul>
+    <% @work_orders.each do |wo| %>
+      <li>
+        <%= link_to "WO ##{wo.id}", work_order_path(wo) %>
+        – <%= wo.customer&.name %> – <%= l wo.created_at, format: :short %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2>Purchase Orders</h2>
+  <ul>
+    <% @purchase_orders.each do |po| %>
+      <li>
+        <%= link_to po.number, purchase_order_path(po) %>
+        – WO #<%= po.work_order&.id %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

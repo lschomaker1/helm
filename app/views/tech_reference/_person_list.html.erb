@@ -1,0 +1,29 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% people.each do |user| %>
+      <tr>
+        <td><%= user.respond_to?(:full_name) ? user.full_name : (user.name || user.email) %></td>
+        <td><%= user.role.to_s.humanize %></td>
+        <td><%= user.respond_to?(:phone) ? user.phone : "" %></td>
+        <td><%= mail_to user.email %></td>
+        <td>
+          <%= form_with model: Message.new, url: messages_path, local: true do |f| %>
+            <%= f.hidden_field :recipient_id, value: user.id %>
+            <%= f.hidden_field :subject, value: "Message from #{current_user.email}" %>
+            <%= f.text_field :body, placeholder: "Type message...", size: 25 %>
+            <%= f.submit "Send", class: "btn btn-sm btn-secondary" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

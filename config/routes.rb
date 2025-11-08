@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :work_orders do
+    resources :purchase_orders, only: [:new, :create, :index]
+  end
+
+  resources :purchase_orders, only: [:index, :show]
+
 
   # Core CRM resources
   resources :customers
@@ -53,6 +59,9 @@ Rails.application.routes.draw do
   end
 
 
-  # Health check
+  get "/search", to: "search#index", as: :search
+  get "/tech_reference", to: "tech_reference#index", as: :tech_reference
+  resources :messages, only: [:create]
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

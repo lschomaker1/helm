@@ -92,6 +92,42 @@
 
 <hr>
 
+<h2>Purchase Orders</h2>
+
+<% if @work_order.purchase_orders.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>PO #</th>
+        <th>Vendor</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @work_order.purchase_orders.order(created_at: :desc).each do |po| %>
+        <tr>
+          <td><%= link_to po.number, purchase_order_path(po) %></td>
+          <td><%= po.vendor_name %></td>
+          <td><%= number_to_currency(po.total_amount) if po.total_amount.present? %></td>
+          <td><%= po.status.to_s.humanize %></td>
+          <td><%= l po.created_at, format: :short %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No purchase orders yet for this work order.</p>
+<% end %>
+
+<% if current_user.technician? || current_user.manager? || current_user.dispatcher? || current_user.admin? %>
+  <%= link_to "New Purchase Order",
+              new_work_order_purchase_order_path(@work_order),
+              class: "btn btn-primary" %>
+<% end %>
+<hr>
+
 <div class="mb-3">
   <h5>Related Calls</h5>
 
