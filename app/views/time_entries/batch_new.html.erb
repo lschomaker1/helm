@@ -1,0 +1,49 @@
+<h2>Batch Add Time Entries for Work Order <%= @work_order.number || @work_order.id %></h2>
+
+<%= form_with url: batch_new_work_order_time_entries_path(@work_order),
+              method: :get,
+              local: true,
+              class: "row g-3 mb-4" do |f| %>
+  <div class="col-auto">
+    <%= label_tag :start_date, "Start date" %><br>
+    <%= date_field_tag :start_date, @start_date, class: "form-control" %>
+  </div>
+  <div class="col-auto">
+    <%= label_tag :end_date, "End date" %><br>
+    <%= date_field_tag :end_date, @end_date, class: "form-control" %>
+  </div>
+  <div class="col-auto align-self-end">
+    <%= submit_tag "Update range", class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>
+
+<%= form_with url: batch_create_work_order_time_entries_path(@work_order),
+              method: :post,
+              local: true do |f| %>
+
+  <%= hidden_field_tag :start_date, @start_date %>
+  <%= hidden_field_tag :end_date,   @end_date %>
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dates.each do |date| %>
+        <tr>
+          <td><%= date.strftime("%a %m/%d/%Y") %></td>
+          <td>
+            <%= text_field_tag "hours[#{date}]", nil,
+                               class: "form-control",
+                               placeholder: "e.g. 8.0" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= f.submit "Save Time Entries", class: "btn btn-primary" %>
+<% end %>

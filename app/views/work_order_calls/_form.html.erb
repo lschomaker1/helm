@@ -1,0 +1,29 @@
+<%= form_with(model: [@work_order, @work_order_call], local: true) do |f| %>
+  <% if @work_order_call.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@work_order_call.errors.count, "error") %> prevented this call from being saved:</h4>
+      <ul>
+        <% @work_order_call.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :technician_id, "Technician", class: "form-label" %>
+    <%= f.collection_select :technician_id,
+                            @technicians,
+                            :id,
+                            :email,
+                            { include_blank: "Select technician" },
+                            { class: "form-select" } %>
+  </div>
+
+  <div class="mt-3">
+    <%= f.submit "Create Call", class: "btn btn-primary" %>
+    <%= link_to "Cancel",
+                work_order_path(@work_order),
+                class: "btn btn-secondary ms-2" %>
+  </div>
+<% end %>

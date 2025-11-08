@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  customer: one
+  division: one
+  start_date: 2025-11-05
+  end_date: 2025-11-05
+  frequency: MyString
+  notes: MyText
+
+two:
+  name: MyString
+  customer: two
+  division: two
+  start_date: 2025-11-05
+  end_date: 2025-11-05
+  frequency: MyString
+  notes: MyText

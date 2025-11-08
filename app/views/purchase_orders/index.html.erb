@@ -1,0 +1,52 @@
+<h1 class="mb-4">Purchase Orders</h1>
+
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table table-striped table-hover mb-0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Work Order</th>
+          <th>Vendor</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @purchase_orders.each do |po| %>
+          <tr>
+            <td><%= po.id %></td>
+            <td>
+              <% if po.respond_to?(:work_order) && po.work_order.present? %>
+                #<%= po.work_order.id %>
+              <% else %>
+                —
+              <% end %>
+            </td>
+            <td><%= po.respond_to?(:vendor_name) ? po.vendor_name : "—" %></td>
+            <td><%= po.respond_to?(:status) ? po.status : "—" %></td>
+            <td>
+              <% if po.respond_to?(:total_amount) && po.total_amount.present? %>
+                <%= number_to_currency(po.total_amount) %>
+              <% else %>
+                —
+              <% end %>
+            </td>
+            <td class="text-end">
+              <%= link_to "View", purchase_order_path(po), class: "btn btn-sm btn-outline-primary" %>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if @purchase_orders.empty? %>
+          <tr>
+            <td colspan="6" class="text-center py-4 text-muted">
+              No purchase orders yet.
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

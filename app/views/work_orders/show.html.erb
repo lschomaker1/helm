@@ -1,0 +1,162 @@
+<h1>Work Order <%= @work_order.number || "WO-#{@work_order.id}" %></h1>
+
+<div class="mb-3">
+  <strong>Customer:</strong> <%= @work_order.customer&.name %><br>
+  <strong>Priority:</strong> <%= @work_order.priority %><br>
+  <strong>Division:</strong> <%= @work_order.division&.name %><br>
+  <strong>Scheduled For:</strong> <%= @work_order.scheduled_at&.strftime("%Y-%m-%d %H:%M") %><br>
+  <strong>Assigned To:</strong> <%= @work_order.assigned_to&.full_name || @work_order.assigned_to&.email %><br>
+  <strong>Location:</strong> <%= @work_order.location %>
+  <p>
+    <strong>Status:</strong> <%= @work_order.status.to_s.titleize %><br>
+    <strong>Completed At:</strong> <%= @work_order.completed_at&.strftime("%Y-%m-%d %H:%M") || "—" %><br>
+    <strong>Invoice #:</strong> <%= @work_order.invoice_number || "—" %><br>
+    <strong>Invoice Total:</strong>
+    <%= @work_order.invoice_total.present? ? number_to_currency(@work_order.invoice_total) : "—" %>
+  </p>
+
+</div>
+
+<div class="mb-3">
+  <h5>Description</h5>
+  <p><%= simple_format @work_order.description %></p>
+</div>
+
+<hr>
+
+<div class="mb-3">
+  <h5>Time Entries</h5>
+
+  <% if @time_entries.any? %>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Tech</th>
+          <th>Started</th>
+          <th>Ended</th>
+          <th>Hours</th>
+          <th>Rate Type</th>
+          <th>Notes</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @time_entries.each do |te| %>
+          <tr>
+            <td><%= te.user&.full_name || te.user&.email %></td>
+            <td><%= te.started_at&.strftime("%m-%d-%Y") %></td>
+            <td><%= te.ended_at&.strftime("%m-%d-%Y") %></td>
+            <td><%= te.hours %></td>
+            <td><%= te.respond_to?(:rate_type_label) ? te.rate_type_label : te.rate_type.to_s.titleize %></td>
+            <td><%= simple_format te.notes %></td>
+            <td class="text-end">
+              <% if policy(te).update? %>
+                <%= link_to "Edit",
+                            edit_time_entry_path(te),
+                            class: "btn btn-sm btn-outline-secondary me-1" %>
+              <% end %>
+
+              <% if policy(te).destroy? %>
+                <form action="<%= time_entry_path(te) %>"
+                      method="post"
+                      class="d-inline"
+                      onsubmit="return confirm('Are you sure you want to delete this time entry?');">
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                  <%= hidden_field_tag :_method, "delete" %>
+                  <button type="submit"
+                          class="btn btn-sm btn-outline-danger"
+                          title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </form>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-muted">No time entries logged yet.</p>
+  <% end %>
+
+  <% if policy(TimeEntry.new(user: current_user, work_order: @work_order)).create? %>
+    <%= link_to "Add Time Entry",
+                new_time_entry_path(work_order_id: @work_order.id),
+                class: "btn btn-primary mt-2" %>
+
+    <%= link_to "Batch Add Time Entries",
+                batch_new_work_order_time_entries_path(@work_order),
+                class: "btn btn-sm btn-outline-primary" %>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="mb-3">
+  <h5>Related Calls</h5>
+
+  <% if @work_order.work_order_calls.any? %>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Call ID</th>
+          <th>Technician</th>
+          <th>Created</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @work_order.work_order_calls.each do |call| %>
+          <tr>
+            <td><%= call.call_identifier %></td>
+            <td><%= call.technician&.full_name || call.technician&.email %></td>
+            <td><%= call.created_at&.strftime("%Y-%m-%d %H:%M") %></td>
+            <td class="text-end">
+              <%= link_to "View Call",
+                          work_order_work_order_call_path(@work_order, call),
+                          class: "btn btn-sm btn-outline-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-muted">No technician calls created for this work order yet.</p>
+  <% end %>
+
+  <% if policy(WorkOrderCall.new(work_order: @work_order, technician: current_user)).create? %>
+    <%= link_to "Add Technician Call",
+                new_work_order_work_order_call_path(@work_order),
+                class: "btn btn-primary mt-2" %>
+  <% end %>
+</div>
+
+
+<div class="mt-3">
+  <%= link_to "Back to Work Orders", work_orders_path, class: "btn btn-secondary" %>
+
+  <% if policy(@work_order).update? %>
+    <%= link_to "Edit", edit_work_order_path(@work_order), class: "btn btn-primary ms-2" %>
+  <% end %>
+
+  <% if policy(@work_order).complete? && @work_order.status != "completed" %>
+    <form action="<%= complete_work_order_path(@work_order) %>"
+          method="post"
+          class="d-inline ms-2"
+          onsubmit="return confirm('Mark this work order as completed?');">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :_method, "patch" %>
+      <button type="submit" class="btn btn-success">
+        Complete Work Order
+      </button>
+    </form>
+  <% end %>
+
+  <% if @work_order.status == "completed" %>
+    <%= link_to "Download Invoice PDF",
+                invoice_work_order_path(@work_order, format: :pdf),
+                class: "btn btn-outline-secondary ms-2",
+                target: "_blank" %>
+  <% end %>
+</div>
+

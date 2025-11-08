@@ -1,0 +1,10 @@
+Hi <%= @user.full_name.presence || @user.email %>,
+
+This is an automatic notification from the Helm CRM OJT integration for <%= @month.strftime("%B %Y") %>.
+
+Status: <%= @log.success? ? "Success" : "Failure" %>
+
+Details:
+<%= @log.message.to_s %>
+
+You can review your OJT configuration inside Helm CRM under "Apprenticeship > OJT".

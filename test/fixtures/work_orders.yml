@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  status: MyString
+  priority: MyString
+  scheduled_at: 2025-11-05 23:33:19
+  completed_at: 2025-11-05 23:33:19
+  customer: one
+  division: one
+  created_by_id: 1
+  assigned_to_id: 1
+  quote_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  status: MyString
+  priority: MyString
+  scheduled_at: 2025-11-05 23:33:19
+  completed_at: 2025-11-05 23:33:19
+  customer: two
+  division: two
+  created_by_id: 1
+  assigned_to_id: 1
+  quote_id: 1

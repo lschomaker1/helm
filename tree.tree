@@ -1,0 +1,100 @@
+app/views
+├── admin
+│   └── users
+│       ├── edit.html.erb
+│       ├── _form.html.erb
+│       ├── index.html.erb
+│       ├── new.html.erb
+│       └── show.html.erb
+├── customers
+│   ├── create.html.erb
+│   ├── destroy.html.erb
+│   ├── edit.html.erb
+│   ├── _form.html.erb
+│   ├── index.html.erb
+│   ├── new.html.erb
+│   ├── show.html.erb
+│   └── update.html.erb
+├── devise
+│   ├── confirmations
+│   │   └── new.html.erb
+│   ├── mailer
+│   │   ├── confirmation_instructions.html.erb
+│   │   ├── email_changed.html.erb
+│   │   ├── password_change.html.erb
+│   │   ├── reset_password_instructions.html.erb
+│   │   └── unlock_instructions.html.erb
+│   ├── passwords
+│   │   ├── edit.html.erb
+│   │   └── new.html.erb
+│   ├── registrations
+│   │   ├── edit.html.erb
+│   │   └── new.html.erb
+│   ├── sessions
+│   │   └── new.html.erb
+│   ├── shared
+│   │   ├── _error_messages.html.erb
+│   │   └── _links.html.erb
+│   └── unlocks
+│       └── new.html.erb
+├── layouts
+│   ├── application.html.erb
+│   ├── _flash.html.erb
+│   ├── mailer.html.erb
+│   ├── mailer.text.erb
+│   └── _navbar.html.erb
+├── ojt
+│   └── show.html.erb
+├── purchase_orders
+│   ├── create.html.erb
+│   ├── destroy.html.erb
+│   ├── edit.html.erb
+│   ├── _form.html.erb
+│   ├── index.html.erb
+│   ├── new.html.erb
+│   ├── show.html.erb
+│   └── update.html.erb
+├── quotes
+│   ├── create.html.erb
+│   ├── destroy.html.erb
+│   ├── edit.html.erb
+│   ├── _form.html.erb
+│   ├── index.html.erb
+│   ├── new.html.erb
+│   ├── show.html.erb
+│   └── update.html.erb
+├── sessions
+│   ├── create.html.erb
+│   ├── destroy.html.erb
+│   └── new.html.erb
+├── time_entries
+│   ├── create.html.erb
+│   ├── destroy.html.erb
+│   ├── edit.html.erb
+│   ├── _form.html.erb
+│   ├── index.html.erb
+│   ├── new.html.erb
+│   ├── show.html.erb
+│   └── update.html.erb
+├── uaojt_mailer
+│   ├── monthly_sync_result.html.erb
+│   └── monthly_sync_result.text.erb
+├── users
+│   ├── _form.html.erb
+│   ├── index.html.erb
+│   └── new.html.erb
+├── work_order_calls
+│   ├── _form.html.erb
+│   ├── new.html.erb
+│   └── show.html.erb
+└── work_orders
+    ├── create.html.erb
+    ├── destroy.html.erb
+    ├── edit.html.erb
+    ├── _form.html.erb
+    ├── index.html.erb
+    ├── new.html.erb
+    ├── show.html.erb
+    └── update.html.erb
+
+21 directories, 76 files

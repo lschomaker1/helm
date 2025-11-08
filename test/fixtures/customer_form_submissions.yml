@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_form_template: one
+  work_order: one
+  user: one
+  data: 
+
+two:
+  customer_form_template: two
+  work_order: two
+  user: two
+  data: 

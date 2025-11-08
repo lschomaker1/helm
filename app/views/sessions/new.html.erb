@@ -1,0 +1,17 @@
+<h1>Sign In</h1>
+
+<%= form_with url: sessions_path, local: true do |f| %>
+  <div>
+    <%= f.label :email %><br>
+    <%= f.text_field :email, autofocus: true %>
+  </div>
+
+  <div>
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <div>
+    <%= f.submit "Login" %>
+  </div>
+<% end %>

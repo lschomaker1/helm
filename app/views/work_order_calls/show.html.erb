@@ -1,0 +1,45 @@
+<h1>Call <%= @work_order_call.call_identifier %></h1>
+
+<p>
+  <strong>Work Order:</strong>
+  <%= link_to @work_order.number, work_order_path(@work_order) %><br>
+  <strong>Technician:</strong>
+  <%= @work_order_call.technician&.full_name || @work_order_call.technician&.email %><br>
+  <strong>Created At:</strong>
+  <%= @work_order_call.created_at&.strftime("%Y-%m-%d %H:%M") %>
+</p>
+
+<hr>
+
+<h5>Time Entries for this Technician on this Work Order</h5>
+
+<% if @time_entries.any? %>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Started</th>
+        <th>Ended</th>
+        <th>Hours</th>
+        <th>Rate Type</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @time_entries.each do |te| %>
+        <tr>
+          <td><%= te.started_at&.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= te.ended_at&.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= te.hours %></td>
+          <td><%= te.respond_to?(:rate_type_label) ? te.rate_type_label : te.rate_type.to_s.titleize %></td>
+          <td><%= simple_format te.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-muted">No time entries logged for this technician on this work order yet.</p>
+<% end %>
+
+<div class="mt-3">
+  <%= link_to "Back to Work Order", work_order_path(@work_order), class: "btn btn-secondary" %>
+</div>

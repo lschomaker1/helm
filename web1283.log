@@ -1,0 +1,56 @@
+web-1  | [1] Puma starting in cluster mode...
+web-1  | [1] * Puma version: 7.1.0 ("Neon Witch")
+web-1  | [1] * Ruby version: ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
+web-1  | [1] *  Min threads: 5
+web-1  | [1] *  Max threads: 5
+web-1  | [1] *  Environment: production
+web-1  | [1] *   Master PID: 1
+web-1  | [1] *      Workers: 2
+web-1  | [1] *     Restarts: (✔) hot (✖) phased (✖) refork
+web-1  | [1] * Preloading application
+web-1  | [1] * Listening on http://0.0.0.0:3000
+web-1  | [1] Use Ctrl-C to stop
+web-1  | [1] - Worker 0 (PID: 21) booted in 0.0s, phase: 0
+web-1  | [1] - Worker 1 (PID: 28) booted in 0.0s, phase: 0
+web-1  | I, [2025-11-08T08:56:20.034606 #28]  INFO -- : [1d2a7183-d9c5-425c-a6e6-7b91f5332b54] Started GET "/admin/users/1/edit" for 10.0.0.145 at 2025-11-08 08:56:20 +0000
+web-1  | I, [2025-11-08T08:56:20.038146 #28]  INFO -- : [1d2a7183-d9c5-425c-a6e6-7b91f5332b54] Processing by Admin::UsersController#edit as HTML
+web-1  | I, [2025-11-08T08:56:20.038207 #28]  INFO -- : [1d2a7183-d9c5-425c-a6e6-7b91f5332b54]   Parameters: {"id"=>"1"}
+web-1  | I, [2025-11-08T08:56:20.130788 #28]  INFO -- : [1d2a7183-d9c5-425c-a6e6-7b91f5332b54]   Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 6642)
+web-1  | I, [2025-11-08T08:56:20.131138 #28]  INFO -- : [1d2a7183-d9c5-425c-a6e6-7b91f5332b54] Completed 200 OK in 93ms (Views: 11.4ms | ActiveRecord: 12.1ms | Allocations: 31142)
+web-1  | I, [2025-11-08T08:56:31.169935 #28]  INFO -- : [777c7d2f-7bca-4431-b89c-f0d87d009949] Started PATCH "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:56:31 +0000
+web-1  | I, [2025-11-08T08:56:31.171888 #28]  INFO -- : [777c7d2f-7bca-4431-b89c-f0d87d009949] Processing by Admin::UsersController#update as HTML
+web-1  | I, [2025-11-08T08:56:31.172094 #28]  INFO -- : [777c7d2f-7bca-4431-b89c-f0d87d009949]   Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"lschomaker@helmgroup.com", "first_name"=>"Lucas", "last_name"=>"Schomaker", "division_id"=>"1", "role"=>"admin", "is_apprentice"=>"0", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "uaojt_username"=>"", "uaojt_password"=>"[FILTERED]", "uaojt_apprenticeship_year"=>"1", "uaojt_school_start"=>"2025-11-17", "uaojt_school_end"=>"2025-11-21"}, "commit"=>"Update User", "id"=>"1"}
+web-1  | I, [2025-11-08T08:56:31.196578 #28]  INFO -- : [777c7d2f-7bca-4431-b89c-f0d87d009949] Redirected to http://10.0.0.75:3000/admin/users/1
+web-1  | I, [2025-11-08T08:56:31.196848 #28]  INFO -- : [777c7d2f-7bca-4431-b89c-f0d87d009949] Completed 302 Found in 25ms (ActiveRecord: 5.9ms | Allocations: 3229)
+web-1  | I, [2025-11-08T08:56:31.214228 #28]  INFO -- : [9bd66b5c-3ddc-4737-b923-d2c620570874] Started GET "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:56:31 +0000
+web-1  | I, [2025-11-08T08:56:31.215883 #28]  INFO -- : [9bd66b5c-3ddc-4737-b923-d2c620570874] Processing by Admin::UsersController#show as HTML
+web-1  | I, [2025-11-08T08:56:31.216000 #28]  INFO -- : [9bd66b5c-3ddc-4737-b923-d2c620570874]   Parameters: {"id"=>"1"}
+web-1  | I, [2025-11-08T08:56:31.231974 #28]  INFO -- : [9bd66b5c-3ddc-4737-b923-d2c620570874]   Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 1056)
+web-1  | I, [2025-11-08T08:56:31.232409 #28]  INFO -- : [9bd66b5c-3ddc-4737-b923-d2c620570874] Completed 200 OK in 16ms (Views: 7.3ms | ActiveRecord: 2.1ms | Allocations: 2140)
+web-1  | I, [2025-11-08T08:56:34.620258 #21]  INFO -- : [d23d2822-a1be-48c7-9e4b-e3fca82a61b0] Started GET "/admin/users/1/edit" for 10.0.0.145 at 2025-11-08 08:56:34 +0000
+web-1  | I, [2025-11-08T08:56:34.623661 #21]  INFO -- : [d23d2822-a1be-48c7-9e4b-e3fca82a61b0] Processing by Admin::UsersController#edit as HTML
+web-1  | I, [2025-11-08T08:56:34.623729 #21]  INFO -- : [d23d2822-a1be-48c7-9e4b-e3fca82a61b0]   Parameters: {"id"=>"1"}
+web-1  | I, [2025-11-08T08:56:34.717248 #21]  INFO -- : [d23d2822-a1be-48c7-9e4b-e3fca82a61b0]   Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 6678)
+web-1  | I, [2025-11-08T08:56:34.717544 #21]  INFO -- : [d23d2822-a1be-48c7-9e4b-e3fca82a61b0] Completed 200 OK in 94ms (Views: 11.7ms | ActiveRecord: 12.3ms | Allocations: 31160)
+web-1  | I, [2025-11-08T08:56:46.589241 #21]  INFO -- : [bb687719-d155-4d8b-8cc6-abfd90792178] Started PATCH "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:56:46 +0000
+web-1  | I, [2025-11-08T08:56:46.591353 #21]  INFO -- : [bb687719-d155-4d8b-8cc6-abfd90792178] Processing by Admin::UsersController#update as HTML
+web-1  | I, [2025-11-08T08:56:46.591582 #21]  INFO -- : [bb687719-d155-4d8b-8cc6-abfd90792178]   Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"lschomaker@helmgroup.com", "first_name"=>"Lucas", "last_name"=>"Schomaker", "division_id"=>"1", "role"=>"admin", "is_apprentice"=>"1", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "uaojt_username"=>"lschomaker2_ua023", "uaojt_password"=>"[FILTERED]", "uaojt_apprenticeship_year"=>"1", "uaojt_school_start"=>"2025-11-17", "uaojt_school_end"=>"2025-11-21"}, "commit"=>"Update User", "id"=>"1"}
+web-1  | I, [2025-11-08T08:56:46.616041 #21]  INFO -- : [bb687719-d155-4d8b-8cc6-abfd90792178] Redirected to http://10.0.0.75:3000/admin/users/1
+web-1  | I, [2025-11-08T08:56:46.616308 #21]  INFO -- : [bb687719-d155-4d8b-8cc6-abfd90792178] Completed 302 Found in 25ms (ActiveRecord: 5.6ms | Allocations: 3243)
+web-1  | I, [2025-11-08T08:56:46.627722 #21]  INFO -- : [30943145-ac7d-44fe-b133-09730081f20c] Started GET "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:56:46 +0000
+web-1  | I, [2025-11-08T08:56:46.629316 #21]  INFO -- : [30943145-ac7d-44fe-b133-09730081f20c] Processing by Admin::UsersController#show as HTML
+web-1  | I, [2025-11-08T08:56:46.629431 #21]  INFO -- : [30943145-ac7d-44fe-b133-09730081f20c]   Parameters: {"id"=>"1"}
+web-1  | I, [2025-11-08T08:56:46.645329 #21]  INFO -- : [30943145-ac7d-44fe-b133-09730081f20c]   Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 1056)
+web-1  | I, [2025-11-08T08:56:46.645778 #21]  INFO -- : [30943145-ac7d-44fe-b133-09730081f20c] Completed 200 OK in 16ms (Views: 7.2ms | ActiveRecord: 2.1ms | Allocations: 2118)
+web-1  | I, [2025-11-08T08:57:09.162628 #28]  INFO -- : [4b189517-f0f5-4d18-9109-6342572fef83] Started GET "/admin/users" for 10.0.0.145 at 2025-11-08 08:57:09 +0000
+web-1  | I, [2025-11-08T08:57:09.164252 #28]  INFO -- : [4b189517-f0f5-4d18-9109-6342572fef83] Processing by Admin::UsersController#index as HTML
+web-1  | I, [2025-11-08T08:57:09.188453 #28]  INFO -- : [4b189517-f0f5-4d18-9109-6342572fef83]   Rendered layout layouts/application.html.erb (Duration: 15.5ms | Allocations: 2134)
+web-1  | I, [2025-11-08T08:57:09.189069 #28]  INFO -- : [4b189517-f0f5-4d18-9109-6342572fef83] Completed 200 OK in 25ms (Views: 14.5ms | ActiveRecord: 3.6ms | Allocations: 3131)
+web-1  | I, [2025-11-08T08:57:18.797396 #21]  INFO -- : [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] Started GET "/ojt" for 10.0.0.145 at 2025-11-08 08:57:18 +0000
+web-1  | I, [2025-11-08T08:57:18.798066 #21]  INFO -- : [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] Processing by OjtController#show as HTML
+web-1  | I, [2025-11-08T08:57:18.803060 #21]  INFO -- : [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.9ms | Allocations: 931)
+web-1  | E, [2025-11-08T08:57:18.804907 #21] ERROR -- : [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc]   
+web-1  | [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] NoMethodError (undefined method `downcase' for an instance of Division):
+web-1  | [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc]   
+web-1  | [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] app/models/user.rb:28:in `uaojt_enabled?'
+web-1  | [016a2c19-ae77-4fc4-8605-fa2a3e02d0fc] app/controllers/ojt_controller.rb:25:in `ensure_uaojt_enabled!'

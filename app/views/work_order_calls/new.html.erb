@@ -1,0 +1,11 @@
+<h1>New Technician Call for <%= @work_order.number %></h1>
+
+<p class="text-muted">
+  Assign this work order to a technician. They will have a unique call ID.
+</p>
+
+<div class="card">
+  <div class="card-body">
+    <%= render "form", work_order: @work_order, work_order_call: @work_order_call %>
+  </div>
+</div>

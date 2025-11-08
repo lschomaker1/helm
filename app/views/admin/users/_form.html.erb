@@ -1,0 +1,99 @@
+<%= form_with model: [:admin, @user], local: true do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Basic Info</h4>
+
+      <div class="mb-3">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :division_id, "Division" %>
+        <%= f.collection_select :division_id, Division.all, :id, :name,
+                                { prompt: "Select division" },
+                                class: "form-select" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :role, "Role" %>
+        <%= f.select :role,
+                     User.roles.keys.map { |r| [r.titleize, r] },
+                     {},
+                     class: "form-select" %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= f.check_box :is_apprentice, class: "form-check-input", id: "user_is_apprentice" %>
+        <%= f.label :is_apprentice, "Is apprentice?", class: "form-check-label" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+        <% if @user.persisted? %>
+          <small class="form-text text-muted">
+            Leave blank to keep existing password.
+          </small>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h4>OJT / UAOJT Integration</h4>
+
+      <div class="mb-3">
+        <%= f.label :uaojt_username, "UAOJT Username" %>
+        <%= f.text_field :uaojt_username, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :uaojt_password, "UAOJT Password" %>
+        <%= f.password_field :uaojt_password, class: "form-control", autocomplete: "off" %>
+        <small class="form-text text-muted">
+          Stored encrypted at rest. Leave blank to keep existing password.
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :uaojt_apprenticeship_year, "Apprenticeship Year" %>
+        <%= f.select :uaojt_apprenticeship_year,
+                     options_for_select((1..5).map { |y| ["#{y.ordinalize} year", y] },
+                                        @user.uaojt_apprenticeship_year || 1),
+                     {},
+                     class: "form-select" %>
+      </div>
+
+      <fieldset class="border p-2">
+        <legend class="w-auto px-2 small">School Schedule (Day School HVACR)</legend>
+
+        <div class="mb-3">
+          <%= f.label :uaojt_school_start, "School Start Date" %>
+          <%= f.date_field :uaojt_school_start, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :uaojt_school_end, "School End Date" %>
+          <%= f.date_field :uaojt_school_end, class: "form-control" %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <%= f.submit class: "btn btn-primary mt-3" %>
+<% end %>

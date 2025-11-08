@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preventative_maintenance_contract: one
+  work_order: one
+  scheduled_for: 2025-11-05 23:33:53
+
+two:
+  preventative_maintenance_contract: two
+  work_order: two
+  scheduled_for: 2025-11-05 23:33:53

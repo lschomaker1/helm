@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "Helm CRM",
+                (user_signed_in? ? authenticated_root_path : root_path),
+                class: "navbar-brand" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <% if user_signed_in? %>
+    <li class="nav-item"><%= link_to "Customers", customers_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to "Work Orders", work_orders_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to "Purchase Orders", purchase_orders_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to "Quotes", quotes_path, class: "nav-link" %></li>
+    <li class="nav-item"><%= link_to "Time Entries", time_entries_path, class: "nav-link" %></li>
+    
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="apprenticeshipDropdown" role="button"
+         data-bs-toggle="dropdown" aria-expanded="false">
+        Apprenticeship
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="apprenticeshipDropdown">
+        <li>
+          <%= link_to "OJT", ojt_path, class: "dropdown-item" %>
+        </li>
+      </ul>
+    </li>
+        <% if current_user.admin? %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+           href="#"
+           id="adminDropdown"
+           role="button"
+           data-bs-toggle="dropdown"
+           aria-expanded="false">
+          Administration
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+          <li><%= link_to "Add New User",
+                          new_admin_user_path,
+                          class: "dropdown-item" %></li>
+          <li><%= link_to "User List",
+                          admin_users_path,
+                          class: "dropdown-item" %></li>
+        </ul>
+      </li>
+    <% end %>
+
+  <% end %>
+</ul>
+
+
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <span class="navbar-text me-2">
+              <%= current_user.email %>
+            </span>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out",
+                        destroy_user_session_path,
+                        data: { turbo: false, confirm: "Log out?" },
+                        class: "btn btn-outline-light btn-sm" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in",
+                        new_user_session_path,
+                        class: "btn btn-outline-light btn-sm" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

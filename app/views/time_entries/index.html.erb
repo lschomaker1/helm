@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Time Entries</h1>
+
+  <% if policy(TimeEntry).create? %>
+    <%= link_to "New Time Entry", new_time_entry_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Work Order</th>
+      <th>Started</th>
+      <th>Ended</th>
+      <th>Hours</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_entries.each do |entry| %>
+      <tr>
+        <td><%= entry.user&.email %></td>
+        <td><%= entry.work_order&.number %></td>
+        <td><%= entry.started_at&.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= entry.ended_at&.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= entry.hours %></td>
+        <td class="text-end">
+          <%= link_to "Show", entry, class: "btn btn-sm btn-outline-primary" %>
+
+          <% if policy(entry).update? %>
+            <%= link_to "Edit", edit_time_entry_path(entry), class: "btn btn-sm btn-secondary ms-1" %>
+          <% end %>
+
+          <% if policy(entry).destroy? %>
+            <%= link_to "Delete", entry, method: :delete,
+                      data: { confirm: "Are you sure?" },
+                      class: "btn btn-sm btn-danger ms-1" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

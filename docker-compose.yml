@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: helmcrm
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: helm_crm_production
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+  web:
+    build: .
+    command: bash -c "bundle exec rails db:migrate && bundle exec puma -C config/puma.rb"
+    environment:
+      RAILS_ENV: production
+      RACK_ENV: production
+      DATABASE_URL: postgres://helmcrm:secretpassword@db:5432/helm_crm_production
+      SECRET_KEY_BASE: change_me_later
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    restart: always
+
+volumes:
+  db_data:

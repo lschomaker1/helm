@@ -1,0 +1,22 @@
+<h1>Time Entry</h1>
+
+<div class="mb-3">
+  <strong>User:</strong> <%= @time_entry.user&.email %><br>
+  <strong>Work Order:</strong> <%= @time_entry.work_order&.number %><br>
+  <strong>Started:</strong> <%= @time_entry.started_at&.strftime("%Y-%m-%d %H:%M") %><br>
+  <strong>Ended:</strong> <%= @time_entry.ended_at&.strftime("%Y-%m-%d %H:%M") %><br>
+  <strong>Hours:</strong> <%= @time_entry.hours %>
+</div>
+
+<div class="mb-3">
+  <h5>Notes</h5>
+  <p><%= simple_format @time_entry.notes %></p>
+</div>
+
+<div class="mt-3">
+  <%= link_to "Back to Time Entries", time_entries_path, class: "btn btn-secondary" %>
+
+  <% if policy(@time_entry).update? %>
+    <%= link_to "Edit", edit_time_entry_path(@time_entry), class: "btn btn-primary ms-2" %>
+  <% end %>
+</div>

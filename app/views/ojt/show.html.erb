@@ -1,0 +1,99 @@
+<h1>OJT Integration</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>UAOJT Credentials & Settings</h3>
+
+    <div class="mb-3">
+      <%= button_to "Sync Current Month to UAOJT",
+                    sync_current_month_ojt_path,
+                    method: :post,
+                    class: "btn btn-success",
+                    data: {
+                      confirm: "This will push all hours for #{Date.current.strftime('%B %Y')} to UAOJT. Continue?"
+                    } %>
+    </div>
+
+
+    <%= form_with model: @user, url: ojt_path, method: :patch, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :uaojt_username, "UAOJT Username" %>
+        <%= f.text_field :uaojt_username, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :uaojt_password, "UAOJT Password" %>
+        <%= f.password_field :uaojt_password, class: "form-control", autocomplete: "off" %>
+        <small class="form-text text-muted">
+          Stored encrypted at rest. Leave blank to keep the existing password.
+        </small>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :uaojt_apprenticeship_year, "Apprenticeship Year" %>
+        <%= f.select :uaojt_apprenticeship_year,
+                     options_for_select((1..5).map { |y| ["#{y.ordinalize} year", y] },
+                                        @user.current_apprenticeship_year),
+                     {}, class: "form-select" %>
+        <small class="form-text text-muted">
+          This will automatically increment by 1 every June 1st (up to year 5).
+        </small>
+      </div>
+
+      <fieldset class="border p-3 mb-3">
+        <legend class="w-auto px-2">School Schedule (Day School HVACR)</legend>
+
+        <div class="mb-3">
+          <%= f.label :uaojt_school_start, "School Start Date" %>
+          <%= f.date_field :uaojt_school_start, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :uaojt_school_end, "School End Date" %>
+          <%= f.date_field :uaojt_school_end, class: "form-control" %>
+          <small class="form-text text-muted">
+            On school days within this range (Mon–Fri) the system will add
+            8 hours of "DAY SCHOOL HVACR" for the monthly OJT submission.
+          </small>
+        </div>
+      </fieldset>
+      
+      <%= f.submit "Save OJT Settings", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <h3>OJT Sync Logs</h3>
+
+    <% if @logs.any? %>
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Run At</th>
+            <th>Status</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @logs.each do |log| %>
+            <tr>
+              <td><%= log.month.strftime("%B %Y") %></td>
+              <td><%= l(log.ran_at, format: :short) %></td>
+              <td>
+                <% if log.success? %>
+                  <span class="badge bg-success">Success</span>
+                <% else %>
+                  <span class="badge bg-danger">Failure</span>
+                <% end %>
+              </td>
+              <td><%= truncate(log.message.to_s, length: 120) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No OJT sync logs yet.</p>
+    <% end %>
+  </div>
+</div>

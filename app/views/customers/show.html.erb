@@ -1,0 +1,31 @@
+<h1><%= @customer.name %></h1>
+
+<div class="mb-3">
+  <strong>Contact:</strong> <%= @customer.contact_name %><br>
+  <strong>Phone:</strong> <%= @customer.phone %><br>
+  <strong>Email:</strong> <%= mail_to @customer.email if @customer.email.present? %><br>
+  <strong>Division:</strong> <%= @customer.division&.name %>
+</div>
+
+<div class="mb-3">
+  <h5>Billing Address</h5>
+  <pre><%= @customer.billing_address %></pre>
+</div>
+
+<div class="mb-3">
+  <h5>Shipping Address</h5>
+  <pre><%= @customer.shipping_address %></pre>
+</div>
+
+<div class="mb-3">
+  <h5>Notes</h5>
+  <p><%= simple_format @customer.notes %></p>
+</div>
+
+<div class="mt-3">
+  <%= link_to "Back to Customers", customers_path, class: "btn btn-secondary" %>
+
+  <% if policy(@customer).update? %>
+    <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary ms-2" %>
+  <% end %>
+</div>

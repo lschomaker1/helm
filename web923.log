@@ -1,0 +1,39 @@
+web-1  | [1] Puma starting in cluster mode...
+web-1  | [1] * Puma version: 7.1.0 ("Neon Witch")
+web-1  | [1] * Ruby version: ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]
+web-1  | [1] *  Min threads: 5
+web-1  | [1] *  Max threads: 5
+web-1  | [1] *  Environment: production
+web-1  | [1] *   Master PID: 1
+web-1  | [1] *      Workers: 2
+web-1  | [1] *     Restarts: (✔) hot (✖) phased (✖) refork
+web-1  | [1] * Preloading application
+web-1  | [1] * Listening on http://0.0.0.0:3000
+web-1  | [1] Use Ctrl-C to stop
+web-1  | [1] - Worker 0 (PID: 22) booted in 0.0s, phase: 0
+web-1  | [1] - Worker 1 (PID: 29) booted in 0.0s, phase: 0
+web-1  | I, [2025-11-08T08:54:03.635647 #29]  INFO -- : [a688212b-c34c-49c6-9a84-90946e52ee41] Started GET "/admin/users" for 10.0.0.145 at 2025-11-08 08:54:03 +0000
+web-1  | I, [2025-11-08T08:54:03.638945 #29]  INFO -- : [a688212b-c34c-49c6-9a84-90946e52ee41] Processing by Admin::UsersController#index as HTML
+web-1  | I, [2025-11-08T08:54:03.726488 #29]  INFO -- : [a688212b-c34c-49c6-9a84-90946e52ee41]   Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 3652)
+web-1  | I, [2025-11-08T08:54:03.726819 #29]  INFO -- : [a688212b-c34c-49c6-9a84-90946e52ee41] Completed 200 OK in 88ms (Views: 8.9ms | ActiveRecord: 12.4ms | Allocations: 27814)
+web-1  | I, [2025-11-08T08:54:06.726596 #22]  INFO -- : [d80f5533-c86c-4917-9543-f7a5c9821a69] Started GET "/admin/users/1/edit" for 10.0.0.145 at 2025-11-08 08:54:06 +0000
+web-1  | I, [2025-11-08T08:54:06.730137 #22]  INFO -- : [d80f5533-c86c-4917-9543-f7a5c9821a69] Processing by Admin::UsersController#edit as HTML
+web-1  | I, [2025-11-08T08:54:06.730202 #22]  INFO -- : [d80f5533-c86c-4917-9543-f7a5c9821a69]   Parameters: {"id"=>"1"}
+web-1  | I, [2025-11-08T08:54:06.826907 #22]  INFO -- : [d80f5533-c86c-4917-9543-f7a5c9821a69]   Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 6642)
+web-1  | I, [2025-11-08T08:54:06.827242 #22]  INFO -- : [d80f5533-c86c-4917-9543-f7a5c9821a69] Completed 200 OK in 97ms (Views: 12.1ms | ActiveRecord: 13.3ms | Allocations: 31000)
+web-1  | I, [2025-11-08T08:54:17.291734 #29]  INFO -- : [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1] Started PATCH "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:54:17 +0000
+web-1  | I, [2025-11-08T08:54:17.293902 #29]  INFO -- : [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1] Processing by Admin::UsersController#update as HTML
+web-1  | I, [2025-11-08T08:54:17.294123 #29]  INFO -- : [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1]   Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"lschomaker@helmgroup.com", "first_name"=>"Lucas", "last_name"=>"Schomaker", "division_id"=>"1", "role"=>"admin", "is_apprentice"=>"1", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "uaojt_username"=>"lschomaker2_ua023", "uaojt_password"=>"[FILTERED]", "uaojt_apprenticeship_year"=>"1", "uaojt_school_start"=>"", "uaojt_school_end"=>""}, "commit"=>"Update User", "id"=>"1"}
+web-1  | I, [2025-11-08T08:54:17.312854 #29]  INFO -- : [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1] Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.7ms | Allocations: 3263)
+web-1  | E, [2025-11-08T08:54:17.314090 #29] ERROR -- : [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1]   
+web-1  | [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1] ActiveRecord::Encryption::Errors::Configuration (Missing Active Record encryption credential: active_record_encryption.primary_key):
+web-1  | [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1]   
+web-1  | [8a48d8b0-5fa2-44bf-bb14-281bb33cf4a1] app/controllers/admin/users_controller.rb:38:in `update'
+web-1  | I, [2025-11-08T08:54:26.334169 #29]  INFO -- : [92d106b6-2f1f-4370-9f1e-fd606d4e263a] Started PATCH "/admin/users/1" for 10.0.0.145 at 2025-11-08 08:54:26 +0000
+web-1  | I, [2025-11-08T08:54:26.336020 #29]  INFO -- : [92d106b6-2f1f-4370-9f1e-fd606d4e263a] Processing by Admin::UsersController#update as HTML
+web-1  | I, [2025-11-08T08:54:26.336215 #29]  INFO -- : [92d106b6-2f1f-4370-9f1e-fd606d4e263a]   Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"lschomaker@helmgroup.com", "first_name"=>"Lucas", "last_name"=>"Schomaker", "division_id"=>"1", "role"=>"admin", "is_apprentice"=>"1", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "uaojt_username"=>"lschomaker2_ua023", "uaojt_password"=>"[FILTERED]", "uaojt_apprenticeship_year"=>"1", "uaojt_school_start"=>"2025-11-18", "uaojt_school_end"=>"2025-11-21"}, "commit"=>"Update User", "id"=>"1"}
+web-1  | I, [2025-11-08T08:54:26.350365 #29]  INFO -- : [92d106b6-2f1f-4370-9f1e-fd606d4e263a] Completed 500 Internal Server Error in 14ms (ActiveRecord: 2.1ms | Allocations: 1936)
+web-1  | E, [2025-11-08T08:54:26.353855 #29] ERROR -- : [92d106b6-2f1f-4370-9f1e-fd606d4e263a]   
+web-1  | [92d106b6-2f1f-4370-9f1e-fd606d4e263a] ActiveRecord::Encryption::Errors::Configuration (Missing Active Record encryption credential: active_record_encryption.primary_key):
+web-1  | [92d106b6-2f1f-4370-9f1e-fd606d4e263a]   
+web-1  | [92d106b6-2f1f-4370-9f1e-fd606d4e263a] app/controllers/admin/users_controller.rb:38:in `update'

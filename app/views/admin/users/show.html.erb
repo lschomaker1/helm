@@ -1,0 +1,23 @@
+<h1>User</h1>
+
+<p><strong>Name:</strong> <%= [@user.first_name, @user.last_name].compact.join(" ") %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Division:</strong> <%= @user.division&.name %></p>
+<p><strong>Role:</strong> <%= @user.role&.titleize %></p>
+<p><strong>Apprentice:</strong> <%= @user.is_apprentice? ? "Yes" : "No" %></p>
+
+<hr>
+
+<h3>OJT / UAOJT</h3>
+<ul>
+  <li><strong>UAOJT Username:</strong> <%= @user.uaojt_username.presence || "(none)" %></li>
+  <li><strong>Hours Report ID:</strong> <%= @user.uaojt_hours_rep_id || "(none)" %></li>
+  <li><strong>Apprenticeship Year:</strong> <%= @user.uaojt_apprenticeship_year || 1 %></li>
+  <li><strong>School Start:</strong> <%= @user.uaojt_school_start || "(none)" %></li>
+  <li><strong>School End:</strong> <%= @user.uaojt_school_end || "(none)" %></li>
+</ul>
+
+<p>
+  <%= link_to "Edit", edit_admin_user_path(@user), class: "btn btn-primary" %>
+  <%= link_to "Back", admin_users_path, class: "btn btn-secondary" %>
+</p>

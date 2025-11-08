@@ -1,0 +1,73 @@
+<%= form_with(model: time_entry, local: true) do |f| %>
+  <% if time_entry.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(time_entry.errors.count, "error") %> prevented this time entry from being saved:</h4>
+      <ul>
+        <% time_entry.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <% if current_user.technician? %>
+        <label class="form-label">User</label>
+        <p class="form-control-plaintext"><%= current_user.email %></p>
+      <% else %>
+        <%= f.label :user_id, "User", class: "form-label" %>
+        <%= f.collection_select :user_id,
+                                (@users || User.all),
+                                :id,
+                                :email,
+                                { include_blank: false },
+                                { class: "form-select" } %>
+      <% end %>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <%= f.label :work_order_id, "Work Order", class: "form-label" %>
+      <%= f.collection_select :work_order_id,
+                              (@work_orders || WorkOrder.all),
+                              :id,
+                              :number,
+                              { include_blank: "Select work order" },
+                              { class: "form-select" } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <%= f.label :started_at, "Date", class: "form-label" %>
+      <%= f.date_select :started_at, 
+                        order: [:month, :day, :year],
+                        discard_day: false,
+                        discard_month: false,
+                        discard_year: false,
+                        class: "form-control" %>
+    </div>
+    <div class="col-md-3 mb-3">
+      <%= f.label :hours, class: "form-label" %>
+      <%= f.number_field :hours, step: 0.01, class: "form-control" %>
+    </div>
+    <div class="col-md-3 mb-3">
+      <%= f.label :rate_type, "Rate Type", class: "form-label" %>
+      <%= f.select :rate_type,
+                  TimeEntry::RATE_TYPES.map { |rt| [TimeEntry.new(rate_type: rt).rate_type_label, rt] },
+                  {},
+                  class: "form-select" %>
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <%= f.label :notes, class: "form-label" %>
+    <%= f.text_area :notes, rows: 4, class: "form-control" %>
+  </div>
+
+  <div class="mt-3">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", time_entries_path, class: "btn btn-secondary ms-2" %>
+  </div>
+<% end %>

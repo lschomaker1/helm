@@ -1,0 +1,25 @@
+web-1  | I, [2025-11-07T23:25:18.521739 #21]  INFO -- : [af828299-3d3d-4be1-b260-3067d65870e8] Completed 200 OK in 104ms (Views: 84.7ms | ActiveRecord: 9.0ms | Allocations: 29128)
+web-1  | I, [2025-11-07T23:25:22.306494 #21]  INFO -- : [8b1def28-27cf-48f9-8aa0-e280c5f7c4ee] Started GET "/work_orders/4/invoice.pdf" for 10.0.0.145 at 2025-11-07 23:25:22 +0000
+web-1  | I, [2025-11-07T23:25:22.307912 #21]  INFO -- : [8b1def28-27cf-48f9-8aa0-e280c5f7c4ee] Processing by WorkOrdersController#invoice as PDF
+web-1  | I, [2025-11-07T23:25:22.308007 #21]  INFO -- : [8b1def28-27cf-48f9-8aa0-e280c5f7c4ee]   Parameters: {"id"=>"4"}
+web-1  | I, [2025-11-07T23:25:22.469615 #21]  INFO -- : [8b1def28-27cf-48f9-8aa0-e280c5f7c4ee] Sent data Invoice-FRE-20251107-4.pdf (0.6ms)
+web-1  | I, [2025-11-07T23:25:22.469724 #21]  INFO -- : [8b1def28-27cf-48f9-8aa0-e280c5f7c4ee] Completed 200 OK in 162ms (Views: 0.2ms | ActiveRecord: 7.5ms | Allocations: 119794)
+web-1  | I, [2025-11-07T23:26:05.525914 #21]  INFO -- : [30603886-a6e4-4622-82ec-bba43cef8e29] Started GET "/time_entries" for 10.0.0.145 at 2025-11-07 23:26:05 +0000
+web-1  | I, [2025-11-07T23:26:05.527122 #21]  INFO -- : [30603886-a6e4-4622-82ec-bba43cef8e29] Processing by TimeEntriesController#index as HTML
+web-1  | I, [2025-11-07T23:26:05.547455 #21]  INFO -- : [30603886-a6e4-4622-82ec-bba43cef8e29]   Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 7311)
+web-1  | I, [2025-11-07T23:26:05.548058 #21]  INFO -- : [30603886-a6e4-4622-82ec-bba43cef8e29] Completed 200 OK in 21ms (Views: 15.1ms | ActiveRecord: 1.8ms | Allocations: 8698)
+web-1  | I, [2025-11-07T23:26:09.225341 #29]  INFO -- : [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf] Started GET "/quotes" for 10.0.0.145 at 2025-11-07 23:26:09 +0000
+web-1  | I, [2025-11-07T23:26:09.227447 #29]  INFO -- : [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf] Processing by QuotesController#index as HTML
+web-1  | I, [2025-11-07T23:26:09.303452 #29]  INFO -- : [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]   Rendered layout layouts/application.html.erb (Duration: 1.2ms | Allocations: 797)
+web-1  | I, [2025-11-07T23:26:09.303639 #29]  INFO -- : [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf] Completed 500 Internal Server Error in 76ms (ActiveRecord: 13.0ms | Allocations: 21806)
+web-1  | E, [2025-11-07T23:26:09.304606 #29] ERROR -- : [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]   
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf] ActionView::Template::Error (undefined method `each' for nil):
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     15:         </tr>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     16:       </thead>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     17:       <tbody>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     18:         <% @time_entries.each do |entry| %>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     19:           <tr>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     20:             <td><%= entry.id %></td>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]     21:             <td><%= entry.respond_to?(:user) && entry.user ? entry.user.email : "—" %></td>
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf]   
+web-1  | [5e21b2e7-9f22-4b09-8064-6fe4ebd2d2cf] app/views/quotes/index.html.erb:18

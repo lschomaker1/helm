@@ -1,0 +1,33 @@
+class TimeEntry < ApplicationRecord
+  belongs_to :user
+  belongs_to :work_order
+
+  RATE_TYPES = %w[regular overtime double_time].freeze
+
+  validates :hours,
+            numericality: { greater_than_or_equal_to: 0 },
+            allow_nil: true
+
+  validates :rate_type,
+            inclusion: { in: RATE_TYPES }
+
+
+  # Convenience label for views
+  def rate_type_label
+    case rate_type
+      when "regular"     then "Regular Time"
+      when "overtime"    then "Overtime"
+      when "double_time" then "Double Time"
+      else rate_type.to_s.titleize
+    end
+  end
+
+  before_save :normalize_started_at_date
+
+  private
+
+  def normalize_started_at_date
+    return unless started_at.present?
+    self.started_at = started_at.to_date
+  end
+end
