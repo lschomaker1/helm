@@ -154,33 +154,56 @@ class UaojtClient
   end
 
   def current_hours_report_id(user_id)
-    refresh_csrf_token_for_api!
+  refresh_csrf_token_for_api!
 
-    csrf = @cookies["XSRF-TOKEN"] || @csrf_token
-    raise "No CSRF token available for current_hours_report_id" if csrf.nil?
+  csrf = @cookies["XSRF-TOKEN"] || @csrf_token
+  raise "No CSRF token available for current_hours_report_id" if csrf.nil?
 
-    uri = BASE + "/api/hourreports?page=1&perPage=9007199254740991&order_direction=desc&user_id=#{user_id}&watch=0"
+  # NOTE: no trailing slash before "?"
+  uri = BASE + "/api/hourreports?page=1&perPage=9007199254740991&order_direction=desc&user_id=#{user_id}&watch=0"
 
-    req = Net::HTTP::Get.new(uri)
-    attach_common_headers(req, html: false)
-    req["x-csrf-token"] = csrf
+  req = Net::HTTP::Get.new(uri)
+  attach_common_headers(req, html: false)
+  req["x-csrf-token"] = csrf
 
-    resp = do_request(uri, req)
-    unless resp.is_a?(Net::HTTPSuccess)
-      raise "UAOJT current_hours_report_id failed: HTTP #{resp.code} #{resp.body[0, 300]}"
+  resp = do_request(uri, req)
+  unless resp.is_a?(Net::HTTPSuccess)
+    raise "UAOJT current_hours_report_id failed: HTTP #{resp.code} #{resp.body[0, 300]}"
+  end
+
+  data = JSON.parse(resp.body)
+
+  # Try to find the array of reports in a few common shapes:
+  # 1) { "message": [ {..}, {..} ] }
+  # 2) { "message": { "data": [ {..} ] } }
+  # 3) { "data": [ {..} ] }
+  # 4) { ...some key => [ {..} ] } as a fallback
+  reports =
+    if data["message"].is_a?(Array)
+      data["message"]
+    elsif data["message"].is_a?(Hash) && data["message"]["data"].is_a?(Array)
+      data["message"]["data"]
+    elsif data["data"].is_a?(Array)
+      data["data"]
+    else
+      # fallback: first array value anywhere in the hash
+      data.values.find { |v| v.is_a?(Array) } || []
     end
 
-    data = JSON.parse(resp.body)
-
-    # Assuming response looks like: { "success": true, "message": [ { "id": 49995, ... } ] }
-    reports = data["message"] || []
-    latest = reports.first
-    report_id = latest["id"] || latest["hours_rep_id"]
-
-    raise "Could not find hours_rep_id in response" if report_id.blank?
-
-    report_id
+  if reports.empty?
+    raise "No hour reports found for user_id=#{user_id}. Raw response: #{data.inspect[0, 200]}"
   end
+
+  latest = reports.first
+  # Try a few common id field names
+  report_id = latest["hours_rep_id"] || latest["id"] || latest["hours_report_id"] || latest["report_id"]
+
+  if report_id.nil?
+    raise "Could not find hours_rep_id/id in hourreports item: #{latest.inspect[0, 200]}"
+  end
+
+  report_id
+end
 
   # --------------------------------------------------------------------------
   # PRIVATE
