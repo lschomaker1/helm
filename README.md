@@ -1,20 +1,80 @@
-<img width="768" height="512" alt="ARCANE" src="https://github.com/user-attachments/assets/06203fae-9fe0-41ee-8507-57be605d5ced" />
-#Helm ARCANE - Automated Resource, Customer, Accounting, and Network Enterprise#
+<img width="1536" height="1024" alt="ARCANE" src="https://github.com/user-attachments/assets/de9067b6-2823-450f-8ffe-98fb9db0d226" />
 
-Designed to address the following problems of the CRM/management suite currently employed:
-  1. Made in Apache Cocoon and HCL Notes (formerly IBM Notes). HCL Notes not defunct but requires a subscription to access and use its basic create, read, update, and destroy functionality, fully closed source. Apache Cocoon has been marked end of life with no security updates since 2023, with no further coming in the future.
-  2. Poor, slow, outdated design with average-at-best mobile performance
-  3. Is not monolithic; still need to pay further licensing fees and forced into more office-side overhead to make any supplementary resource management programs work in tandem.
-  4. Is neither richly customized nor customizable, with Perfectware stating some limited customizing capabilities, but largely selling the same product to their customers.
+# **Helm ARCANE**
+### *Automated Resource, Customer, Accounting, and Network Environment*
 
-How does it address these issues?
+---
 
-  1. Made fully using Ruby on Rails, an elegant, iOS and Android native framework in the language Ruby, known to be one of the most conversational, easy-to-maintain, and unproblematic frameworks in use today; and in using this community-rich open source framework, security updates are still released regularly, significantly reducing risk of cyberattack/exploit by an attacker.
-  2. Uses a fully-reactive, mobile-friendly design (both on tablets and phones); ready to be wrapped using Turbo Native to create an iOS or Android application for techs to download and use natively
-  3. Combines all company-required functions and processes into one robust suite, using one login, one webpage, from any device. Also allows for company feedback to directly change the functionality of the application.
-  4. Provides full customizability with a virtual "sky is the limit" development envelope in which to expand. Already added automatic OJT entry based on time entries, can add direct online remote access to Helm-managed controls systems, graphical site maps, and any other value-added tasks/processes suitable for an online application suite.
+## **Overview**
 
-Created by:
-Lucas Schomaker
-3rd Year HVACR Service Apprentice
-Helm Group - Service
+**Helm ARCANE** is a next-generation management and CRM platform designed to replace outdated, inefficient legacy systems with a unified, fully customizable, and mobile-ready application suite.  
+
+Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to consolidate operations, streamline technician workflows, and modernize data handling—all while reducing cost and dependency on external vendors.
+
+---
+
+## **Current Challenges**
+
+### 1. Legacy Framework Dependence
+- Current platform built on **Apache Cocoon** and **HCL Notes (formerly IBM Notes)**—both aging, closed-source, and subscription-bound technologies.  
+- **Apache Cocoon** has reached end-of-life (no security updates post-2023).  
+- Reliance on external licensing increases long-term operational cost and cybersecurity risk.
+
+### 2. Poor Performance and Usability
+- Outdated, slow, and desktop-centric interface.  
+- Limited mobile compatibility and minimal support for field technician access.
+
+### 3. Fragmented Systems
+- Multiple disjointed tools are needed to manage customers, work orders, and billing.  
+- Integration requires extra licensing and manual overhead.
+
+### 4. Limited Customization
+- “One-size-fits-all” vendor solutions restrict functionality and innovation.  
+- Companies must adapt their workflow to the software—not the other way around.
+
+---
+
+## **ARCANE: The Solution**
+
+### 1. Built on Modern, Secure, Open-Source Technology
+- Developed entirely with **Ruby on Rails**, backed by an active open-source community.  
+- Regular security updates, modular codebase, and transparent development process.  
+- Eliminates dependence on external licensing—**no per-seat or per-module costs**.
+
+### 2. Mobile-First, Reactive Design
+- Fully responsive interface for smartphones, tablets, and desktops.  
+- Can be seamlessly wrapped into native iOS/Android apps using **Turbo Native**.  
+- Technicians can log time, update work orders, and access customer data directly in the field.
+
+### 3. Unified Platform for All Business Functions
+- Combines CRM, work orders, purchase orders, PM scheduling, time entries, quotes, and accounting integration—all under **one login**.  
+- Streamlines workflow and ensures real-time synchronization across departments.  
+- Direct feedback loop allows Helm staff to request and receive tailored feature updates.
+
+### 4. Limitless Customization and Expansion
+- Scalable architecture supports new modules such as:  
+  - Automatic **OJT** logging based on time entries  
+  - Remote monitoring and control of Helm-managed systems  
+  - **Graphical site maps** and job-site dashboards  
+  - Technician scheduling optimization and GPS-based dispatch  
+- Future-ready for AI-driven diagnostics, predictive maintenance, and smart-reporting integrations.
+
+---
+
+## **Strategic Benefits**
+
+| **Category** | **Benefit** |
+|---------------|-------------|
+| **Cost Efficiency** | No recurring vendor or licensing fees; lower IT overhead |
+| **Security** | Open-source community patches vulnerabilities rapidly |
+| **Adaptability** | Built for Helm’s exact workflows; evolves with company needs |
+| **Productivity** | Mobile-ready and faster interface reduces technician downtime |
+| **Longevity** | Maintained and extended internally; not dependent on third-party lifecycles |
+
+---
+
+## **Developed By**
+
+**Lucas Schomaker**  
+3rd Year HVAC/R Service Apprentice  
+**Helm Group – Service Division**
