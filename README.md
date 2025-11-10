@@ -7,9 +7,9 @@
 
 ## **Overview**
 
-**Helm ARCANE** is a next-generation management and CRM platform designed to replace outdated, inefficient legacy systems with a unified, fully customizable, and mobile-ready application suite.  
+**Helm ARCANE** is a next-generation management and CRM platform designed to replace outdated, inefficient legacy systems with a unified, fully customizable, and an application suite that is universally easy to access, .  
 
-Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to consolidate operations, streamline technician workflows, and modernize data handling—all while reducing cost and dependency on external vendors.
+Developed internally using **Ruby on Rails** and 100% proprietary code, ARCANE empowers Helm Group to consolidate operations, streamline technician workflows, modernize data handling, and perform the changeover to the new monolithic suite—all while reducing cost and dependency on external vendors.
 
 ---
 
@@ -21,8 +21,7 @@ Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to cons
 - Reliance on external licensing increases long-term operational cost and cybersecurity risk.
 
 ### 2. Poor Performance and Usability
-- Outdated, slow, and desktop-centric interface.  
-- Limited mobile compatibility and minimal support for field technician access.
+- WebTech was an afterthought added to their existing suite when the market called for it; as a result, the mobile UX is average at best, with submission errors, lagging/glitching controls, and touch-hostile UI.
 
 ### 3. Fragmented Systems
 - Multiple disjointed tools are needed to manage customers, work orders, and billing.  
@@ -30,11 +29,11 @@ Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to cons
 
 ### 4. Limited Customization
 - “One-size-fits-all” vendor solutions restrict functionality and innovation.  
-- Companies must adapt their workflow to the software—not the other way around.
+- Helm must adapt its workflow to the software—not the other way around.
 
 ---
 
-## **ARCANE: The Solution**
+## **How ARCANE Can Change Things**
 
 ### 1. Built on Modern, Secure, Open-Source Technology
 - Developed entirely with **Ruby on Rails**, backed by an active open-source community.  
@@ -52,24 +51,23 @@ Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to cons
 - Direct feedback loop allows Helm staff to request and receive tailored feature updates.
 
 ### 4. Limitless Customization and Expansion
-- Scalable architecture supports new modules such as:  
-  - Automatic **OJT** logging based on time entries  
-  - Remote monitoring and control of Helm-managed systems  
-  - **Graphical site maps** and job-site dashboards  
-  - Technician scheduling optimization and GPS-based dispatch  
-- Future-ready for AI-driven diagnostics, predictive maintenance, and smart-reporting integrations.
-
+- Scalable architecture supports new modules such as:
+  -  Automatic **OJT** logging based on time entries(*live now for all apprentices*)
+  - **Integrated customer forms** with all GoCanvas functionality(automatic PDF generation, emailing, etc), plus extras that add further value to this suite such as customer trends based on forms, data analytics, and soon automatic ordering and quoting from suppliers such as Johnstone, Grainger, and Gustave Larson, among many more.
+  - Technician scheduling optimization and GPS-based dispatch functionality already wired and ready for deployment.
+  - A **native iOS app** will facilitate direct notification of technicians on their company phone with reminders, questions, messages, or any company information.  
 ---
 
 ## **Strategic Benefits**
 
 | **Category** | **Benefit** |
 |---------------|-------------|
-| **Cost Efficiency** | No recurring vendor or licensing fees; lower IT overhead |
-| **Security** | Open-source community patches vulnerabilities rapidly |
-| **Adaptability** | Built for Helm’s exact workflows; evolves with company needs |
-| **Productivity** | Mobile-ready and faster interface reduces technician downtime |
-| **Longevity** | Maintained and extended internally; not dependent on third-party lifecycles |
+| **Value** | No recurring vendor or licensing fees; lower IT overhead |
+| **Security** | Open-source community patches vulnerabilities rapidly, almost always before public detection |
+| **Comfort** | Built to gently replace the existing infrastructure, keeping all AP/AR codes, billing codes, etc. intact for streamlined accounting system transfer |
+| **Adaptability** | Built for Helm’s exact workflows; evolves with company needs and individual requests |
+| **Productivity** | Mobile-ready and faster interface reduces technician downtime and provides better tools to satisfy customers |
+| **Longevity** | Maintained and extended internally; not dependent on third-party lifecycles, with a real person any employee can talk to individually with questions, any day of the week |
 
 ---
 
@@ -78,3 +76,6 @@ Developed internally using **Ruby on Rails**, ARCANE empowers Helm Group to cons
 **Lucas Schomaker**  
 3rd Year HVAC/R Service Apprentice  
 **Helm Group – Service Division**
+
+*Phone: (815) 990=3384*
+*email: lschomaker@helmgroup.com*
